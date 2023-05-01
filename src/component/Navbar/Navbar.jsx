@@ -11,28 +11,28 @@ const Navbar = () => {
             {/* parent div */}
             <div className='flex justify-between mb-5'>
                 {/* logo section */}
-                <div> <h1 className='font-bold lg:text-4xl text-xl text-gray-600 '>Dish<span className='text-transparent bg-clip-text bg-gradient-to-r from-[#3e9b82] to-[#99f2c8] '>Delight</span></h1> </div>
+                <div> <h1 className='font-bold lg:text-4xl text-xl text-gray-600 '>Dish<span className='text-transparent bg-clip-text bg-gradient-to-r from-[#f12711] to-[#f5af19] '>Delight</span></h1> </div>
                 {/* navlink section */}
 
                 <div className='font-semibold lg:text-lg hidden lg:inline '>
                     <ul className='lg:flex  lg:space-x-8'>
                         <li>
-                            <NavLink className={({ isActive }) => isActive ? 'text-emerald-600' : 'text-black'} to='/'>
+                            <NavLink className={({ isActive }) => isActive ? 'text-orange-600' : 'text-black'} to='/'>
                                 Home
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink className={({ isActive }) => isActive ? 'text-emerald-600' : 'text-black'} to='/blogs'>
+                            <NavLink className={({ isActive }) => isActive ? 'text-orange-600' : 'text-black'} to='/blogs'>
                                 Blog
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink className={({ isActive }) => isActive ? 'text-emerald-600' : 'text-black'} to='/aboutus'>
+                            <NavLink className={({ isActive }) => isActive ? 'text-orange-600' : 'text-black'} to='/aboutus'>
                                 About Us
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink className={({ isActive }) => isActive ? 'text-emerald-600' : 'text-black'} to='/login'>
+                            <NavLink className={({ isActive }) => isActive ? 'text-orange-600' : 'text-black'} to='/login'>
                                 Login
                             </NavLink>
                         </li>
@@ -56,7 +56,7 @@ const Navbar = () => {
                 {/* Logo & Button section */}
                 <div className='flex items-center justify-between mb-4'>
                   <div>
-                  <h1 className='font-bold lg:text-4xl text-xl text-gray-600 '>Dish<span className='text-transparent bg-clip-text bg-gradient-to-r from-[#3e9b82] to-[#99f2c8] '>Delight</span></h1> 
+                  <h1 className='font-bold lg:text-4xl text-xl text-gray-600 '>Dish<span className='text-transparent bg-clip-text bg-gradient-to-r  from-[#f12711] to-[#f5af19] '>Delight</span></h1> 
                   </div>
                   {/* Dropdown menu close button */}
                   <div>
@@ -73,22 +73,22 @@ const Navbar = () => {
                 <nav>
                   <ul className='space-y-4'>
                   <li>
-                            <NavLink className={({ isActive }) => isActive ? 'text-emerald-600' : 'text-black'} to='/'>
+                            <NavLink className={({ isActive }) => isActive ? 'text-orange-600' : 'text-black'} to='/'>
                                 Home
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink className={({ isActive }) => isActive ? 'text-emerald-600' : 'text-black'} to='/blogs'>
+                            <NavLink className={({ isActive }) => isActive ? 'text-orange-600' : 'text-black'} to='/blogs'>
                                 Blog
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink className={({ isActive }) => isActive ? 'text-emerald-600' : 'text-black'} to='/aboutus'>
+                            <NavLink className={({ isActive }) => isActive ? 'text-orange-600' : 'text-black'} to='/aboutus'>
                                 About Us
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink className={({ isActive }) => isActive ? 'text-emerald-600' : 'text-black'} to='/login'>
+                            <NavLink className={({ isActive }) => isActive ? 'text-orange-600' : 'text-black'} to='/login'>
                                 Login
                             </NavLink>
                         </li>
