@@ -6,7 +6,7 @@ const NewsLetter = () => {
 
             {/* parent div */}
 
-            <div className='flex justify-evenly tracking-wide items-center '>
+            <div className='flex justify-evenly tracking-wide items-center'>
 
                 {/* image div */}
 
@@ -15,7 +15,7 @@ const NewsLetter = () => {
 
                 {/* subscribe div */}
                 
-                <div className='text-right'>
+                <div className='text-right my-10'>
                     <h1 className='lg:text-2xl mb-2'>Subscribe to our <span className='text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-red-400 to-yellow-300'>News letter</span></h1>
                     <small >Get new recipe every week!!</small>
                     <input className='p-2 mt-4 w-4/5 rounded border-0 outline-none border-b-2' type="email" name="email" id="" placeholder='Please Enter Your Email Address' />

@@ -5,9 +5,11 @@ import Footer from '../Footer/Footer';
 
 const Main = () => {
     return (
-        <div className='mx-5 lg:mx-20 mt-5'>
-            <Navbar></Navbar>
+        <div>
+           <div className='mx-5 lg:mx-20 mt-5'>
+           <Navbar></Navbar>
             <Outlet></Outlet>
+           </div>
             <Footer></Footer>
         </div>
     );
