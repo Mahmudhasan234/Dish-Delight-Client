@@ -1,5 +1,5 @@
 import React from 'react';
-import chefCooking  from '../../../assets/chef_cooking.jpg'
+
 import { Link } from 'react-router-dom';
 const Header = () => {
     return (
@@ -13,7 +13,7 @@ const Header = () => {
                  <button className='text-white px-5 py-3 rounded-full bg-gradient-to-r from-[#f12711] to-[#f5af19]'> <Link> Browse Recipes</Link> </button>
                  </div>
                 {/* heading picture div  */}
-                <div className=' w-full'><img src={chefCooking} alt="" /></div>
+                <div className=' w-full'><img src='https://i.ibb.co/6RtTg0G/chef-cooking.jpg' alt="" /></div>
             </div>
             </section>
         </div>
