@@ -8,7 +8,7 @@ import withReactContent from 'sweetalert2-react-content'
 import { updateProfile } from 'firebase/auth';
 const Register = () => {
 
-    const { signUpUser,user } = useContext(AuthContext)
+    const { signUpUser, signInWithGoogle } = useContext(AuthContext)
     const MySwal = withReactContent(Swal)
     const handleSignUp = (event) => {
 
@@ -48,6 +48,17 @@ const Register = () => {
             .then()
             .catch(error=>{console.log(error.message)})
             }
+        }
+        const handleSignInWithGoogle =()=> {
+          console.log('hi')
+            signInWithGoogle()
+            .then(result=>{
+                const googleUser = result.user;
+                console.log(googleUser)
+            })
+            .catch(error=>{
+                console.log(error.message)
+            })
         }
     return (
         <div>
@@ -100,7 +111,7 @@ const Register = () => {
                                 </div>
                                 <div className="form-control mt-6">
                                     <button className="btn btn-error text-white">Register</button>
-                                    <div className='mt-5 text-center btn btn-outline gap-2'><FcGoogle className='h-5 w-5' ></FcGoogle> <Link>Sigin  with google</Link></div>
+                                    <div onClick={handleSignInWithGoogle} className='mt-5 text-center btn btn-outline gap-2'><FcGoogle className='h-5 w-5' ></FcGoogle> <Link>Sigin  with google</Link></div>
                                     <div className='mt-5 text-center btn btn-outline gap-2 '> <FaGithub className='h-5 w-5'></FaGithub> <Link>Sigin  with Github</Link></div>
                                 </div>
                             </form>

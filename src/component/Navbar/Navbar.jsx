@@ -4,21 +4,23 @@ import { HiX } from "react-icons/hi";
 import { FaUserCircle } from "react-icons/fa";
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
+import { Tooltip } from 'react-tooltip'
 const Navbar = () => {
-    const { user,signOutUser,updateUserProfile } = useContext(AuthContext)
+    const { user, signOutUser } = useContext(AuthContext)
     console.log(user)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-const handleSignOut = ()=>{
-    signOutUser()
-    .then()
-    .catch(error=>{console.log(error.message)})
-}
+    const handleSignOut = () => {
+        signOutUser()
+            .then()
+            .catch(error => { console.log(error.message) })
+    }
     return (
         <div>
             {/* parent div */}
             <div className='flex justify-between mb-5'>
                 {/* logo section */}
-                <div> <h1 className='font-bold lg:text-4xl text-xl text-gray-600 '>Dish<span className='text-transparent bg-clip-text bg-gradient-to-r from-[#f12711] to-[#f5af19] '>Delight</span></h1> </div>
+                <div> <h1 className='font-bold lg:text-4xl text-xl text-gray-600 '>Dish<span className='text-transparent bg-clip-text bg-gradient-to-r from-[#f12711] to-[#f5af19] '>Delight</span></h1>
+                </div>
                 {/* navlink section */}
 
                 <div className='font-semibold lg:text-lg hidden lg:inline '>
@@ -40,9 +42,20 @@ const handleSignOut = ()=>{
                         </li>
                         {
                             user ? <li>
-                                <div className="dropdown">
-                                    <label tabIndex={0}><FaUserCircle className='w-6 h-6'></FaUserCircle></label>
-                                    <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-gray-100 rounded-box gap-5">
+                                <div className="dropdown dropdown-end">
+                                    <label tabIndex={0}> <div>
+                                        {
+                                            user && user.photoURL ?<div> <a data-tooltip-id="my-tooltip-styles"
+                                            data-tooltip-content={user.displayName}>
+                                                <img className=' border border-base-300 h-8 w-8 rounded-full' src={user.photoURL} alt="" /> 
+
+                                            </a> <Tooltip id="my-tooltip-styles" className="example" /> </div>  : <div>
+                                                <FaUserCircle className='w-6 h-6' data-tooltip-id="my-tooltip-styles"
+                                                    data-tooltip-content={user.displayName}></FaUserCircle>  <Tooltip id="my-tooltip-styles" className="example" />
+                                            </div>
+                                        }
+                                    </div> </label>
+                                    <ul tabIndex={0} className="dropdown-content p-5 shadow bg-gray-100 rounded-box gap-5">
                                         <li>{user?.email}</li>
                                         <li><button onClick={handleSignOut}>Log Out</button></li>
                                     </ul>
@@ -51,7 +64,7 @@ const handleSignOut = ()=>{
                                 Sign In
                             </NavLink>
                         }
-                        
+
                     </ul>
                 </div>
 
@@ -103,21 +116,30 @@ const handleSignOut = ()=>{
                                                 About Us
                                             </NavLink>
                                         </li>
-                                        
+
                                         {
                             user ? <li>
                                 <div className="dropdown">
-                                    <label tabIndex={0}><FaUserCircle className='w-6 h-6'></FaUserCircle></label>
-                                    <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-gray-100 rounded-box gap-5">
+                                    <label tabIndex={0}> <div>
+                                        {
+                                            user && user.photoURL ?<div> <a data-tooltip-id="my-tooltip-styles"
+                                            data-tooltip-content={user.displayName}>
+                                                <img className=' border border-base-300 h-8 w-8 rounded-full' src={user.photoURL} alt="" /> 
+
+                                            </a> <Tooltip id="my-tooltip-styles" className="example" /> </div>  : <div>
+                                                <FaUserCircle className='w-6 h-6' data-tooltip-id="my-tooltip-styles"
+                                                    data-tooltip-content={user.displayName}></FaUserCircle>  <Tooltip id="my-tooltip-styles" className="example" />
+                                            </div>
+                                        }
+                                    </div> </label>
+                                    <ul tabIndex={0} className="dropdown-content p-5 shadow bg-gray-100 rounded-box gap-5">
                                         <li>{user?.email}</li>
                                         <li><button onClick={handleSignOut}>Log Out</button></li>
                                     </ul>
                                 </div>
-                            </li> : <div>
-                            <NavLink className={({ isActive }) => isActive ? 'text-orange-600' : 'text-black'} to='/login'>
+                            </li> : <NavLink className={({ isActive }) => isActive ? 'text-orange-600' : 'text-black'} to='/login'>
                                 Sign In
                             </NavLink>
-                            </div>
                         }
                                     </ul>
                                 </nav>

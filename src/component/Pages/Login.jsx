@@ -1,26 +1,39 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
-
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 const Login = () => {
 
-    const { signInUser,user } = useContext(AuthContext);
+    const { signInUser,signInWithGoogle } = useContext(AuthContext);
 
     const emailRef = useRef()
+    const [error, setError] = useState('')
     const handleSignIn = (event) => {
         event.preventDefault()
         const form = event.target
         const email = form.email.value;
         const password = form.password.value;
-       
+       setError('')-
         signInUser(email, password)
             .then(result => {
                 const loggedinUser = result.user
                 console.log(loggedinUser, 'success')
             })
-            .catch(error => {console.log(error.message)});
+            .catch(error =>{setError('Please Check Your Email or Password')
+            form.reset()});
     }
-
+    const handleSignInWithGoogle =()=> {
+        console.log('hi')
+          signInWithGoogle()
+          .then(result=>{
+              const googleUser = result.user;
+              console.log(googleUser)
+          })
+          .catch(error=>{
+              console.log(error.message)
+          })
+      }
 
 
     return (
@@ -62,7 +75,10 @@ const Login = () => {
                                 </div>
                                 <div className="form-control mt-6">
                                     <button className="btn btn-error text-white">Login</button>
+                                    <div onClick={handleSignInWithGoogle} className='mt-5 text-center btn btn-outline gap-2'><FcGoogle className='h-5 w-5' ></FcGoogle> <Link>Sigin  with google</Link></div>
+                                    <div className='mt-5 text-center btn btn-outline gap-2 '> <FaGithub className='h-5 w-5'></FaGithub> <Link>Sigin  with Github</Link></div>
                                     
+                                    <p className='text-error mt-5'  >{error}</p>
                                 </div>
                             </form>
                         </div>
