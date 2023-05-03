@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { AuthContext } from '../../Provider/AuthProvider';
 const Register = () => {
+
+const {signUpUser}= useContext(AuthContext)
+const [success, setSuccess]=useState('')
+const handleSignUp =(event)=>{
+
+    event.preventDefault()
+    const form = event.target
+    const email=form.email.value;
+    const name=form.name.value;
+    const password=form.password.value;
+    // console.log(email,name,password)
+    signUpUser(email,password)
+    .then(result=>{
+        console.log('user successfully created')
+    })
+    .catch(error=>{console.log(error.message)});
+}
+
+
     return (
         <div>
             {/* Parent div */}
@@ -24,7 +44,7 @@ const Register = () => {
                         {/* login form */}
 
                         <div className="card mt-5 flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                            <div className="card-body">
+                            <form onSubmit={handleSignUp} className="card-body">
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text font-semibold">Name</span>
@@ -47,7 +67,7 @@ const Register = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Password</span>
                                     </label>
-                                    <input type="text" name='password' placeholder="password" required className="input input-bordered" />
+                                    <input type="password" name='password' placeholder="password" required className="input input-bordered" />
                                     <label className="label">
                                         <a>Already have an account? <Link to='/login' className="link link-hover"> Login.</Link></a>
                                     </label>
@@ -57,7 +77,7 @@ const Register = () => {
             <div className='mt-5 text-center btn btn-outline gap-2'><FcGoogle className='h-5 w-5' ></FcGoogle> <Link>Sigin  with google</Link></div>
             <div className='mt-5 text-center btn btn-outline gap-2 '> <FaGithub className='h-5 w-5'></FaGithub> <Link>Sigin  with Github</Link></div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
 

@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const Login = () => {
+
+    const { signInUser,user } = useContext(AuthContext);
+
+    const handleSignIn = (event) => {
+        event.preventDefault()
+        const form = event.target
+        const email = form.email.value;
+        const password = form.password.value;
+        
+        signInUser(email, password)
+            .then(result => {
+                const loggedinUser = result.user
+                console.log(loggedinUser, 'success')
+            })
+            .catch(error => {console.log(error.message)});
+    }
+
+
+
     return (
         <div>
             {/* Parent div */}
@@ -23,7 +43,7 @@ const Login = () => {
                         {/* login form */}
 
                         <div className="card -mt-36 lg:mt-0 flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                            <div className="card-body">
+                            <form onSubmit={handleSignIn} className="card-body">
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text font-semibold">Email</span>
@@ -34,15 +54,15 @@ const Login = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Password</span>
                                     </label>
-                                    <input type="text" name='password' placeholder="password" required className="input input-bordered" />
+                                    <input type="password" name='password' placeholder="password" required className="input input-bordered" />
                                     <label className="label">
-                                        <a>Don't have an account? <Link  to='/register' className="link link-hover"> register here.</Link></a>
+                                        <a>Don't have an account? <Link to='/register' className="link link-hover"> register here.</Link></a>
                                     </label>
                                 </div>
                                 <div className="form-control mt-6">
                                     <button className="btn btn-error text-white">Login</button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
