@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 const Login = () => {
 
-    const { signInUser,signInWithGoogle } = useContext(AuthContext);
+    const { signInUser,signInWithGoogle,signInWithGithub } = useContext(AuthContext);
 
     const emailRef = useRef()
     const [error, setError] = useState('')
@@ -24,7 +24,7 @@ const Login = () => {
             form.reset()});
     }
     const handleSignInWithGoogle =()=> {
-        console.log('hi')
+        
           signInWithGoogle()
           .then(result=>{
               const googleUser = result.user;
@@ -34,6 +34,16 @@ const Login = () => {
               console.log(error.message)
           })
       }
+      const handleSignInWithGithub =()=> 
+      signInWithGithub()
+      .then(result=>{
+          const googleUser = result.user;
+          console.log(googleUser)
+      })
+      .catch(error=>{
+          console.log(error.message)
+      })
+  
 
 
     return (
@@ -76,7 +86,7 @@ const Login = () => {
                                 <div className="form-control mt-6">
                                     <button className="btn btn-error text-white">Login</button>
                                     <div onClick={handleSignInWithGoogle} className='mt-5 text-center btn btn-outline gap-2'><FcGoogle className='h-5 w-5' ></FcGoogle> <Link>Sigin  with google</Link></div>
-                                    <div className='mt-5 text-center btn btn-outline gap-2 '> <FaGithub className='h-5 w-5'></FaGithub> <Link>Sigin  with Github</Link></div>
+                                    <div onClick={handleSignInWithGithub} className='mt-5 text-center btn btn-outline gap-2 '> <FaGithub className='h-5 w-5'></FaGithub> <Link>Sigin  with Github</Link></div>
                                     
                                     <p className='text-error mt-5'  >{error}</p>
                                 </div>

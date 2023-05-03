@@ -134,6 +134,7 @@ const Navbar = () => {
                                     </div> </label>
                                     <ul tabIndex={0} className="dropdown-content p-5 shadow bg-gray-100 rounded-box gap-5">
                                         <li>{user?.email}</li>
+                                        
                                         <li><button onClick={handleSignOut}>Log Out</button></li>
                                     </ul>
                                 </div>
