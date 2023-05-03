@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 
@@ -6,12 +6,13 @@ const Login = () => {
 
     const { signInUser,user } = useContext(AuthContext);
 
+    const emailRef = useRef()
     const handleSignIn = (event) => {
         event.preventDefault()
         const form = event.target
         const email = form.email.value;
         const password = form.password.value;
-        
+       
         signInUser(email, password)
             .then(result => {
                 const loggedinUser = result.user
@@ -48,7 +49,7 @@ const Login = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Email</span>
                                     </label>
-                                    <input type="text" placeholder="Enter your email" name='email' required className="input input-bordered" />
+                                    <input type="text" placeholder="Enter your email" name='email' ref={emailRef} required className="input input-bordered" />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
@@ -61,6 +62,7 @@ const Login = () => {
                                 </div>
                                 <div className="form-control mt-6">
                                     <button className="btn btn-error text-white">Login</button>
+                                    
                                 </div>
                             </form>
                         </div>

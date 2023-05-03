@@ -3,26 +3,52 @@ import { Link } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from '../../Provider/AuthProvider';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import { updateProfile } from 'firebase/auth';
 const Register = () => {
 
-const {signUpUser}= useContext(AuthContext)
-const [success, setSuccess]=useState('')
-const handleSignUp =(event)=>{
+    const { signUpUser,user } = useContext(AuthContext)
+    const MySwal = withReactContent(Swal)
+    const handleSignUp = (event) => {
 
-    event.preventDefault()
-    const form = event.target
-    const email=form.email.value;
-    const name=form.name.value;
-    const password=form.password.value;
-    // console.log(email,name,password)
-    signUpUser(email,password)
-    .then(result=>{
-        console.log('user successfully created')
-    })
-    .catch(error=>{console.log(error.message)});
-}
+        event.preventDefault()
+        const form = event.target
+        const email = form.email.value;
+        const name = form.name.value;
+        const password = form.password.value;
+        const photoUrl =form.photourl.value
+        if ((password.length<6)) {
 
+            MySwal.fire(<p>Password must be 6 character long.</p>)
+            return form.reset();
+        }
+        // console.log(email,name,password)
+        signUpUser(email, password,name,photoUrl)
 
+            .then(result => {
+                MySwal.fire(<p>User Created Successfully</p>)
+                updateUserProfileDetails(result.user,name,photoUrl)
+                return form.reset()
+            }
+
+            )
+
+            .catch(error => {
+                MySwal.fire(<p>Please Check your Email and Password</p>)
+                form.reset()
+            });
+            
+            const updateUserProfileDetails =(user,name,photoUrl)=>{
+                updateProfile(user,{
+                    displayName:name,
+                    photoURL: photoUrl 
+                })
+                    
+            .then()
+            .catch(error=>{console.log(error.message)})
+            }
+        }
     return (
         <div>
             {/* Parent div */}
@@ -69,13 +95,13 @@ const handleSignUp =(event)=>{
                                     </label>
                                     <input type="password" name='password' placeholder="password" required className="input input-bordered" />
                                     <label className="label">
-                                        <a>Already have an account? <Link to='/login' className="link link-hover"> Login.</Link></a>
+                                        <p>Already have an account? <Link to='/login' className="link link-hover"> Login.</Link></p>
                                     </label>
                                 </div>
                                 <div className="form-control mt-6">
                                     <button className="btn btn-error text-white">Register</button>
-            <div className='mt-5 text-center btn btn-outline gap-2'><FcGoogle className='h-5 w-5' ></FcGoogle> <Link>Sigin  with google</Link></div>
-            <div className='mt-5 text-center btn btn-outline gap-2 '> <FaGithub className='h-5 w-5'></FaGithub> <Link>Sigin  with Github</Link></div>
+                                    <div className='mt-5 text-center btn btn-outline gap-2'><FcGoogle className='h-5 w-5' ></FcGoogle> <Link>Sigin  with google</Link></div>
+                                    <div className='mt-5 text-center btn btn-outline gap-2 '> <FaGithub className='h-5 w-5'></FaGithub> <Link>Sigin  with Github</Link></div>
                                 </div>
                             </form>
                         </div>
