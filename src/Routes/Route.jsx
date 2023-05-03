@@ -6,6 +6,7 @@ import AboutUs from "../component/Pages/AboutUs";
 import Login from "../component/Pages/Login";
 import Register from "../component/Pages/Home/Register";
 import ChefsProfile from "../component/Pages/Home/Recipe/ChefsProfile";
+import ChefRecipe from "../component/Pages/Home/Recipe/ChefRecipe";
 
 const router = createBrowserRouter([
     {
@@ -33,9 +34,14 @@ const router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
-                path: '/profiles',
-                element: <ChefsProfile></ChefsProfile>,
-                
+              path: '/profile',
+              element:<ChefsProfile></ChefsProfile>,
+              
+            
+            },{
+                path: '/recipe/:id',
+                element: <ChefRecipe></ChefRecipe>,
+                loader: ({params}) => fetch(`https://dishdelight-server-mahmudhasan234.vercel.app/recipes/${params.id}`)
             }
         ]
     }

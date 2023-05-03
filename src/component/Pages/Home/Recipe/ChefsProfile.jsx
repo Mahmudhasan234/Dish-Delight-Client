@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
 import Displayprofile from './Displayprofile';
+import ChefRecipe from './ChefRecipe';
 
 const ChefsProfile = () => {
+    
    const [profiles, setProfiles] = useState([])
-console.log(profiles)
+
    useEffect(()=>{
     fetch('https://dishdelight-server-mahmudhasan234.vercel.app/chefsprofile')
     .then(res=>res.json())
@@ -21,6 +22,7 @@ console.log(profiles)
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 mt-16'>
 {
     profiles.map(profile=> <Displayprofile key={profile.chef_id} profile={profile}></Displayprofile>
+
     )
 }
                 </div>
