@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import LazyLoad from 'react-lazyload';
 
 const ChefBanner = ({id}) => {
     const idnumberStr = id.id
@@ -20,7 +21,7 @@ const ChefBanner = ({id}) => {
                     <p className=" mt-5 mb-10 text-xl text-gray-600 font-semibold mr-44">{profile[0]?.bio}</p>
                 </div>
                 <div>
-                    <img className='h-64 lg:w-full mb-5' src={profile[0]?.chef_picture} alt="" />
+                    <LazyLoad height={200} offset={100}><img className='h-64 lg:w-full mb-5' src={profile[0]?.chef_picture} alt="" /></LazyLoad>
                 </div>
             </div>
         </div>

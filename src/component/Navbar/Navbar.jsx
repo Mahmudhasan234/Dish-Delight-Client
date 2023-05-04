@@ -7,7 +7,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 import { Tooltip } from 'react-tooltip'
 const Navbar = () => {
     const { user, signOutUser } = useContext(AuthContext)
-    console.log(user)
+    // console.log(user)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const handleSignOut = () => {
         signOutUser()
@@ -19,7 +19,7 @@ const Navbar = () => {
             {/* parent div */}
             <div className='flex justify-between mb-5'>
                 {/* logo section */}
-                <div> <h1 className='font-bold lg:text-4xl text-xl text-gray-600 '>Dish<span className='text-transparent bg-clip-text bg-gradient-to-r from-[#f12711] to-[#f5af19] '>Delight</span></h1>
+                <div> <Link to='/' className='font-bold lg:text-4xl text-xl text-gray-600 '>Dish<span className='text-transparent bg-clip-text bg-gradient-to-r from-[#f12711] to-[#f5af19] '>Delight</span></Link>
                 </div>
                 {/* navlink section */}
 
@@ -85,7 +85,7 @@ const Navbar = () => {
                                 {/* Logo & Button section */}
                                 <div className='flex items-center justify-between mb-4'>
                                     <div>
-                                        <h1 className='font-bold lg:text-4xl text-xl text-gray-600 '>Dish<span className='text-transparent bg-clip-text bg-gradient-to-r  from-[#f12711] to-[#f5af19] '>Delight</span></h1>
+                                        <Link to='/' className='font-bold lg:text-4xl text-xl text-gray-600 '>Dish<span className='text-transparent bg-clip-text bg-gradient-to-r  from-[#f12711] to-[#f5af19] '>Delight</span></Link>
                                     </div>
                                     {/* Dropdown menu close button */}
                                     <div>

@@ -10,7 +10,7 @@ const Pricing = () => {
                 </div>
                 {/* Pricing card section */}
                 <div>
-                    <div className='flex lg:flex-row lg:justify-center flex-col container items-center gap-5 mt-20'>
+                    <div className='flex lg:flex-row lg:justify-center flex-col container items-center gap-24 mt-20'>
                     <div className="card w-72 bg-base-100 shadow-xl">
                         <div className="card-body">
                             <h2 className="card-title text-base">Free</h2>

@@ -1,49 +1,57 @@
 import React, { useContext, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 const Login = () => {
 
-    const { signInUser,signInWithGoogle,signInWithGithub } = useContext(AuthContext);
-
+    const { signInUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
+const navigate = useNavigate()
     const emailRef = useRef()
     const [error, setError] = useState('')
+    const location = useLocation()
+    console.log(location)
+    const from = location.state?.from?.pathname || '/'
     const handleSignIn = (event) => {
         event.preventDefault()
         const form = event.target
         const email = form.email.value;
         const password = form.password.value;
-       setError('')-
-        signInUser(email, password)
-            .then(result => {
-                const loggedinUser = result.user
-                console.log(loggedinUser, 'success')
-            })
-            .catch(error =>{setError('Please Check Your Email or Password')
-            form.reset()});
+        setError('') -
+            signInUser(email, password)
+                .then(result => {
+                    const loggedinUser = result.user
+                    console.log(loggedinUser, 'success')
+                    navigate(from)
+                })
+                .catch(error => {
+                    setError('Please Check Your Email or Password')
+                    form.reset()
+                });
     }
-    const handleSignInWithGoogle =()=> {
-        
-          signInWithGoogle()
-          .then(result=>{
-              const googleUser = result.user;
-              console.log(googleUser)
-          })
-          .catch(error=>{
-              console.log(error.message)
-          })
-      }
-      const handleSignInWithGithub =()=> 
-      signInWithGithub()
-      .then(result=>{
-          const googleUser = result.user;
-          console.log(googleUser)
-      })
-      .catch(error=>{
-          console.log(error.message)
-      })
-  
+    const handleSignInWithGoogle = () => {
+
+        signInWithGoogle()
+            .then(result => {
+                const googleUser = result.user;
+                //   console.log(googleUser)
+                navigate(from)
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
+    }
+    const handleSignInWithGithub = () =>
+        signInWithGithub()
+            .then(result => {
+                const githubUser = result.user;
+                //   console.log(googleUser)
+                navigate(from)
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
+
 
 
     return (
@@ -87,7 +95,7 @@ const Login = () => {
                                     <button className="btn btn-error text-white">Login</button>
                                     <div onClick={handleSignInWithGoogle} className='mt-5 text-center btn btn-outline gap-2'><FcGoogle className='h-5 w-5' ></FcGoogle> <Link>Sigin  with google</Link></div>
                                     <div onClick={handleSignInWithGithub} className='mt-5 text-center btn btn-outline gap-2 '> <FaGithub className='h-5 w-5'></FaGithub> <Link>Sigin  with Github</Link></div>
-                                    
+
                                     <p className='text-error mt-5'  >{error}</p>
                                 </div>
                             </form>
