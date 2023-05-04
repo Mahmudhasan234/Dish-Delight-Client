@@ -8,7 +8,7 @@ import withReactContent from 'sweetalert2-react-content'
 import { updateProfile } from 'firebase/auth';
 const Register = () => {
 
-    const { signUpUser, signInWithGoogle } = useContext(AuthContext)
+    const { signUpUser, signInWithGoogle,signInWithGithub } = useContext(AuthContext)
     const MySwal = withReactContent(Swal)
     const handleSignUp = (event) => {
 
@@ -49,6 +49,16 @@ const Register = () => {
             .catch(error=>{console.log(error.message)})
             }
         }
+        const handleSignInWithGithub = () =>
+        signInWithGithub()
+            .then(result => {
+                const githubUser = result.user;
+                //   console.log(googleUser)
+                navigate(from)
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
         const handleSignInWithGoogle =()=> {
           console.log('hi')
             signInWithGoogle()
@@ -110,9 +120,9 @@ const Register = () => {
                                     </label>
                                 </div>
                                 <div className="form-control mt-6">
-                                    <button className="btn btn-error text-white">Register</button>
+                                    <button className="btn btn-error text-white" >Register</button>
                                     <div onClick={handleSignInWithGoogle} className='mt-5 text-center btn btn-outline gap-2'><FcGoogle className='h-5 w-5' ></FcGoogle> <Link>Sigin  with google</Link></div>
-                                    <div className='mt-5 text-center btn btn-outline gap-2 '> <FaGithub className='h-5 w-5'></FaGithub> <Link>Sigin  with Github</Link></div>
+                                    <div onClick={handleSignInWithGithub} className='mt-5 text-center btn btn-outline gap-2 '> <FaGithub className='h-5 w-5'></FaGithub> <Link>Sigin  with Github</Link></div>
                                 </div>
                             </form>
                         </div>

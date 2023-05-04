@@ -21,7 +21,7 @@ const ChefBanner = ({id}) => {
                     <p className=" mt-5 mb-10 text-xl text-gray-600 font-semibold mr-44">{profile[0]?.bio}</p>
                 </div>
                 <div>
-                    <LazyLoad height={200} offset={100}><img className='h-64 lg:w-full mb-5' src={profile[0]?.chef_picture} alt="" /></LazyLoad>
+                    <LazyLoad height={200} offset={100}><img className='h-64 w-64 border-red-200 border-1 lg:w-full mb-5 rounded-full' src={profile[0]?.chef_picture} alt="" /></LazyLoad>
                 </div>
             </div>
         </div>
