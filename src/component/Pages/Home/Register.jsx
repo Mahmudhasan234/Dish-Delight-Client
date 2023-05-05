@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext} from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from '../../Provider/AuthProvider';
@@ -8,8 +8,9 @@ import withReactContent from 'sweetalert2-react-content'
 import { updateProfile } from 'firebase/auth';
 const Register = () => {
 
-    const { signUpUser, signInWithGoogle,signInWithGithub } = useContext(AuthContext)
+    const { signUpUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext)
     const MySwal = withReactContent(Swal)
+    const navigate = useNavigate()
     const handleSignUp = (event) => {
 
         event.preventDefault()
@@ -17,18 +18,19 @@ const Register = () => {
         const email = form.email.value;
         const name = form.name.value;
         const password = form.password.value;
-        const photoUrl =form.photourl.value
-        if ((password.length<6)) {
+        const photoUrl = form.photourl.value
+        if ((password.length < 6)) {
 
             MySwal.fire(<p>Password must be 6 character long.</p>)
             return form.reset();
         }
         // console.log(email,name,password)
-        signUpUser(email, password,name,photoUrl)
+        signUpUser(email, password, name, photoUrl)
 
             .then(result => {
                 MySwal.fire(<p>User Created Successfully</p>)
-                updateUserProfileDetails(result.user,name,photoUrl)
+                updateUserProfileDetails(result.user, name, photoUrl)
+                navigate('/')
                 return form.reset()
             }
 
@@ -38,38 +40,39 @@ const Register = () => {
                 MySwal.fire(<p>Please Check your Email and Password</p>)
                 form.reset()
             });
-            
-            const updateUserProfileDetails =(user,name,photoUrl)=>{
-                updateProfile(user,{
-                    displayName:name,
-                    photoURL: photoUrl 
-                })
-                    
-            .then()
-            .catch(error=>{console.log(error.message)})
-            }
+
+        const updateUserProfileDetails = (user, name, photoUrl) => {
+            updateProfile(user, {
+                displayName: name,
+                photoURL: photoUrl
+            })
+
+                .then()
+                .catch(error => { console.log(error.message) })
         }
-        const handleSignInWithGithub = () =>
+    }
+    const handleSignInWithGithub = () =>
         signInWithGithub()
             .then(result => {
                 const githubUser = result.user;
                 //   console.log(googleUser)
-                navigate(from)
+                navigate('/')
             })
             .catch(error => {
                 console.log(error.message)
             })
-        const handleSignInWithGoogle =()=> {
-          console.log('hi')
-            signInWithGoogle()
-            .then(result=>{
+    const handleSignInWithGoogle = () => {
+        console.log('hi')
+        signInWithGoogle()
+            .then(result => {
                 const googleUser = result.user;
-                console.log(googleUser)
+                navigate('/')
+                // console.log(googleUser)
             })
-            .catch(error=>{
+            .catch(error => {
                 console.log(error.message)
             })
-        }
+    }
     return (
         <div>
             {/* Parent div */}

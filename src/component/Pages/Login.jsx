@@ -6,7 +6,7 @@ import { FaGithub } from "react-icons/fa";
 const Login = () => {
 
     const { signInUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
-const navigate = useNavigate()
+    const navigate = useNavigate()
     const emailRef = useRef()
     const [error, setError] = useState('')
     const location = useLocation()
@@ -22,7 +22,7 @@ const navigate = useNavigate()
                 .then(result => {
                     const loggedinUser = result.user
                     console.log(loggedinUser, 'success')
-                    navigate(from)
+                    navigate(from ? from : '/')
                 })
                 .catch(error => {
                     setError('Please Check Your Email or Password')
@@ -35,7 +35,7 @@ const navigate = useNavigate()
             .then(result => {
                 const googleUser = result.user;
                 //   console.log(googleUser)
-                navigate(from)
+                navigate(from ? from : '/')
             })
             .catch(error => {
                 console.log(error.message)
@@ -46,7 +46,7 @@ const navigate = useNavigate()
             .then(result => {
                 const githubUser = result.user;
                 //   console.log(googleUser)
-                navigate(from)
+                navigate(from ? from : '/')
             })
             .catch(error => {
                 console.log(error.message)

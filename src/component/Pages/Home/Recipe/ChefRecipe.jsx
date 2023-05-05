@@ -9,7 +9,7 @@ const ChefRecipe = () => {
 
   useEffect(()=>{
       setSpinner(true)
-      setTimeout(()=>{setSpinner(false)},5000)
+      setTimeout(()=>{setSpinner(false)},2000)
   },[])
     const id = useParams()
     console.log(id)

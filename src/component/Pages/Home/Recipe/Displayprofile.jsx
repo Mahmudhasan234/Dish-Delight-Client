@@ -8,8 +8,10 @@ const Displayprofile = ({ profile }) => {
         <div>
             {/* chefs profile */}
             <div>
-            <div className="card card-side bg-base-100 shadow-xl mb-5">
-                <figure><img className='h-64 mb-10' src={chef_picture}/></figure>
+            <div className="bg-gre card card-side bg-base-100 shadow-xl mb-5">
+                <div>
+                <figure><img className='h-64 w-64 rounded-full ml-5 mt-5 mb-10' src={chef_picture}/></figure>
+                </div>
                 <div className="card-body">
                     <h2 className="card-title text-3xl fonr-semibold">{chef_name}</h2>
                         <p className='text-xl font-semibold text-gray-500'>{years_of_experience} Years of Experiences</p>

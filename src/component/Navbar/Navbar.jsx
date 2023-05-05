@@ -43,7 +43,7 @@ const Navbar = () => {
                         {
                             user ? <li>
                                 <div className="dropdown dropdown-end">
-                                    <label tabIndex={0}> <div>
+                                    <label className='' tabIndex={0}> <div>
                                         {
                                             user && user.photoURL ?<div> <a data-tooltip-id="my-tooltip-styles"
                                             data-tooltip-content={user.displayName}>
@@ -55,9 +55,9 @@ const Navbar = () => {
                                             </div>
                                         }
                                     </div> </label>
-                                    <ul tabIndex={0} className="dropdown-content p-5 shadow bg-gray-100 rounded-box gap-5">
-                                        <li>{user?.email}</li>
-                                        <li><button onClick={handleSignOut}>Log Out</button></li>
+                                    <ul tabIndex={0} className="dropdown-content mt-5 p-5 shadow bg-gray-100 rounded-box">
+                                        <li className='mb-10'>{user?.email}</li>
+                                        <li><button className='btn btn-outline ' onClick={handleSignOut}>Log Out</button></li>
                                     </ul>
                                 </div>
                             </li> : <NavLink className={({ isActive }) => isActive ? 'text-orange-600' : 'text-black'} to='/login'>
