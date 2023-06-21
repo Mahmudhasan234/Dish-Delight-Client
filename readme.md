@@ -1,6 +1,6 @@
-#Dish Delight 
+# Dish Delight 
 
-#OverView
+# OverView
 
 This is a simple website with collection of italian recipe.
 -at first have a navbar with logo and some link to different route of the websie and signin button.
@@ -16,7 +16,7 @@ This is a simple website with collection of italian recipe.
 -there is a newsletter section after the chef profile section section
 -and finally have the header section with logo and some social media toogles.
 
-#Technology Used
+# Technology Used
 -React
 -React Router
 -Firebase
